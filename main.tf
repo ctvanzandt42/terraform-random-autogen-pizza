@@ -16,24 +16,27 @@ terraform {
   }
 }
 
-provider "azurerm" {
-  features {}
-}
+#provider "azurerm" {
+#  features {}
+#}
+#
+#resource "azurerm_resource_group" "rsg" {
+#  location = "eastus2"
+#  name     = "cvzeu2-random-pizza"
+#}
 
-resource "azurerm_resource_group" "rsg" {
-  location = "eastus2"
-  name     = "cvzeu2-random-pizza"
-}
-
-resource "random_id" "rng" {
-  byte_length = 8
-  keepers = {
-    first = timestamp()
-  }
+resource "random_integer" "rng" {
+  min = 1
+  max = 500
 }
 
 output "rng" {
-  value = random_id.rng.hex
+  value = random_integer.rng.result
+}
+
+resource "random_id" "something" {
+  count       = random_integer.rng.result % 9 == 0 ? 1 : 0
+  byte_length = 8
 }
 
 
