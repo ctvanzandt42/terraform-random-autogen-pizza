@@ -26,8 +26,8 @@ terraform {
 #}
 
 resource "random_integer" "rng" {
-  min = 1
-  max = 500
+  min = var.min_val
+  max = var.max_val
 }
 
 output "rng" {
