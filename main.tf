@@ -16,14 +16,14 @@ terraform {
   }
 }
 
-#provider "azurerm" {
-#  features {}
-#}
-#
-#resource "azurerm_resource_group" "rsg" {
-#  location = "eastus2"
-#  name     = "cvzeu2-random-pizza"
-#}
+provider "azurerm" {
+  features {}
+}
+
+resource "azurerm_resource_group" "rsg" {
+  location = "eastus2"
+  name     = "cvzeu2-random-pizza"
+}
 
 resource "random_integer" "rng" {
   min = var.min_val
