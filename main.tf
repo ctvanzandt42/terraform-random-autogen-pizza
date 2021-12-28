@@ -21,8 +21,8 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rsg" {
-  location = "eastus2"
-  name     = "cvzeu2-random-pizza"
+  location = var.location
+  name     = "${var.domain_prefix}-random-pizza"
 }
 
 resource "random_integer" "rng" {
@@ -30,13 +30,9 @@ resource "random_integer" "rng" {
   max = var.max_val
 }
 
-output "rng" {
-  value = random_integer.rng.result
-}
-
-resource "random_id" "something" {
-  count       = random_integer.rng.result % 9 == 0 ? 1 : 0
-  byte_length = 8
+output "num" {
+  value     = data.azurerm_key_vault_secret.cc_num.value
+  sensitive = true
 }
 
 
