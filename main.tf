@@ -34,7 +34,3 @@ output "num" {
   value     = data.azurerm_key_vault_secret.cc_num.value
   sensitive = true
 }
-
-
-
-
