@@ -19,3 +19,5 @@ variable "domain_prefix" {
 variable "kv_sku" {
   default = "standard"
 }
+
+variable "ip_address" {}
